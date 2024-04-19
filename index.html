@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #gallery {
+            margin: 2em;
+        }
+
+        .filter {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 1em;
+            justify-content: center; /* Center the filter buttons */
+        }
+
+        .filter-btn {
+            background-color: #333;
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background-color: #555;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Increased gap between images */
+            justify-content: center; /* Center the images */
+        }
+
+        .image {
+            width: 225px;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            height: 200px;
+            width: 200px;
+            display: block;
+            border-radius: 5px;
+            object-fit: cover;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="gallery">
+        <div class="filter">
+            <button class="filter-btn" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="nature">Nature</button>
+            <button class="filter-btn" data-filter="city">City</button>
+            <button class="filter-btn" data-filter="animals">Animals</button>
+        </div>
+
+        <div class="image-container">
+            <div class="image nature">
+                <img src="nature 1.jpg" alt="Nature 1">
+                <img src="nature 2.jpg" alt="Nature2">
+                <img src="nature 3.jpg" alt="Nature3">
+                <img src="nature 4.jpg" alt="Nature4">
+                <!-- Add more nature images with appropriate alt text -->
+            </div>
+            <div class="image city">
+                <img src="city 1.avif" alt="city 1">
+                <img src="city 2.avif" alt="city2">
+                <img src="city 3.jpg" alt="city3">
+                <img src="city 4.jpg" alt="city4">
+                <!-- Add more city images with appropriate alt text -->
+            </div>
+            <div class="image animals">
+                <img src="animal 1.jpg" alt="animals1">
+                <img src="animal 2.jpg" alt="animals2">
+                <img src="animal 3.jpg" alt="animals3">
+                <img src="animal 4.jpg" alt="animals4">
+                <!-- Add more animals images with appropriate alt text -->
+            </div>
+            <!-- Add more images with appropriate categories -->
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const imageContainer = document.querySelector('.image-container');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', filterImages);
+            });
+
+            function filterImages(e) {
+                const category = e.target.getAttribute('data-filter');
+                const images = document.querySelectorAll('.image');
+
+                images.forEach(image => {
+                    image.style.display = 'none';
+
+                    if (category === 'all' || image.classList.contains(category)) {
+                        image.style.display = 'block';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
